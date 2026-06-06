@@ -80,3 +80,6 @@ pip-wheel-metadata/
 *.coverage
 coverage.xml
 nosetests.xml
+*.tsv
+*.tfevents
+*.json

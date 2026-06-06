@@ -1,0 +1,78 @@
+Traffic Demand Prediction Solution
+
+1. Objective
+Predict traffic demand using location, road characteristics, and time information.
+
+2. Data Preprocessing
+- Removed Index column.
+- Handled missing values in RoadType.
+- Converted LargeVehicles into binary values:
+  Allowed -> 1
+  Not Allowed -> 0
+- Extracted time-based features from timestamp.
+
+3. Feature Engineering
+
+Original Features:
+- geohash
+- day
+- RoadType
+- NumberofLanes
+- LargeVehicles
+- timestamp
+
+Engineered Features:
+
+1. time_slot
+   time_slot = hour * 4 + minute//15
+
+2. peak_hour
+   Indicates rush hour periods.
+
+3. geo_road
+   Combination of geohash and RoadType.
+
+4. road_time
+   Combination of RoadType and time_slot.
+
+5. geo_freq
+   Frequency of occurrence of each geohash.
+
+6. latitude and longitude
+   Decoded from geohash.
+
+4. Models Used
+
+Primary Model:
+CatBoostRegressor
+
+Parameters:
+- iterations = 3000
+- depth = 10
+- learning_rate = 0.03
+
+Secondary Model:
+XGBoost Regressor
+
+5. Model Evaluation
+
+Local Validation:
+R² ≈ 0.95
+
+Leaderboard Score:
+≈ 0.9095
+
+6. Tools Used
+
+- Python
+- Pandas
+- NumPy
+- Scikit-Learn
+- CatBoost
+- XGBoost
+- PyGeoHash
+
+7. Files Included
+
+- traffic_prediction.ipynb
+- submission.csv
